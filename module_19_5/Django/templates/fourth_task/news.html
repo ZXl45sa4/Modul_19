@@ -1,0 +1,42 @@
+{% extends "menu.html" %}
+{% block content %}
+    <ul>
+        {% for key in page_posts %}
+            <li><p>{{key.title}} | {{key.content}} | {{key.current_datetime}}</p></li>
+        {% endfor %}
+    </ul>
+<!-- показываем пагинатор -->
+{% if page_posts.has_previous %}
+  <a href="?page={{ page_posts.previous_page_number }}">(Prev)</a>
+
+  {% if page_posts.number > 3 %}
+      <a href="?page=1">(1)</a>
+    {% if page_posts.number > 4 %}
+      <a >...</a>
+    {% endif %}
+  {% endif %}
+{% endif %}
+
+{% for num in page_posts.paginator.page_range %}
+  {% if page_posts.number == num %}
+      <a href="?page={{ num }}">({{ num }})</a>
+  {% elif num > page_posts.number|add:'-3' and num < page_posts.number|add:'3' %}
+      <a href="?page={{ num }}">({{ num }})</a>
+  {% endif %}
+{% endfor %}
+
+{% if page_posts.has_next %}
+  {% if page_posts.number < page_posts.paginator.num_pages|add:'-3' %}
+    <a >...</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}">
+      ({{ page_posts.paginator.num_pages }})
+    </a>
+  {% elif page_posts.number < page_posts.paginator.num_pages|add:'-2' %}
+    <a href="?page={{ page_obj.paginator.num_pages }}">
+      ({{ page_posts.paginator.num_pages }})
+    </a>
+  {% endif %}
+
+  <a href="?page={{ page_posts.next_page_number }}">(Next)</a>
+{% endif %}
+{% endblock %}

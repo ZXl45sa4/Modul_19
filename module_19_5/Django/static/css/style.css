@@ -1,0 +1,9 @@
+{% load static %}
+body{
+    background-image: url("forest.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+h1{
+    text-align:center;
+}

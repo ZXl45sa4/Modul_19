@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load bootstrap4 %}
+{% load static %}
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type"
+              content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %} My Site {% endblock %} - Доска</title>
+        {% bootstrap_css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        {% bootstrap_javascript jquery='slim' %}
+    </head>
+    <body class="container-fluid">
+        <header class="mb-4">
+            {% block header %}
+            <h1 class="display-1 text-center">Главная страница</h1>
+            {% endblock %}
+        </header>
+        <div class="row">
+            <ul class="col nav justify-content-end border">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://127.0.0.1:8002/register">Регистрация</a>
+                </li>
+                <li class="nav-item dropdown">
+                   <a class="nav-link dropdown-toggle"
+                      data-toggle="dropdown"
+                      href="#" role="button"
+                      aria-haspopup="true"
+                      aria-expanded="false">Профиль</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Изменить пароль </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Выйти</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="#">Вход</a></li>
+            </ul>
+        </div>
+        <div class="row">
+            <nav class="col-md-auto nav flex-column border">
+                {% block meny %}
+                <a class="nav-link root"
+                   href="http://127.0.0.1:8002/platform">Главная</a>
+                <a class="nav-link" href="http://127.0.0.1:8002/platform/games">Магазин</a>
+                <a class="nav-link" href="http://127.0.0.1:8002/platform/cart">Корзина</a>
+                <a class="nav-link" href="http://127.0.0.1:8002/platform/news">News</a>
+                <a class="nav-link" href="http://127.0.0.1:8002">Вернуться обратно</a>
+                {% endblock %}
+            </nav>
+            <section class="col border py-2">
+                {% block content %}
+                {% bootstrap_messages %}
+                {% endblock %}
+            </section>
+        </div>
+        <footer class="mt-3">
+            <p class="text-right font-italic">&copy; MyCorp, 2024 г.</p>
+        </footer>
+    </body>
+</html>

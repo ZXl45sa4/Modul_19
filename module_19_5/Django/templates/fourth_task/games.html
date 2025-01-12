@@ -1,0 +1,22 @@
+{% extends "menu.html" %}
+
+{% block header %}
+    <h1 class="display-1 text-center">Игры</h1>
+{% endblock %}
+
+{% block meny %}
+                <a class="nav-link" href="http://127.0.0.1:8002/platform/games">Магазин</a>
+                <a class="nav-link" href="http://127.0.0.1:8002/platform">Вернуться обратно</a>
+{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for key in digits_games %}
+            <li><p>{{key.title}} | {{key.description}}. Стоимость:{{key.cost}} <button>Купить</button></p></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
