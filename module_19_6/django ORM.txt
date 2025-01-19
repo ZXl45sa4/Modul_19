@@ -1,0 +1,96 @@
+cd Django
+python manage.py shell - Начать сеанс оболочки
+
+from task1.models import News
+title
+content
+
+from task1.models import Buyer
+name
+balance
+age
+
+from task1.models import Game
+title
+cost
+size
+
+p.title = "My First Post!" - запись
+
+p.save() - сохранение
+
+News.objects.all()
+
+p = News() - чтение News
+
+p - чтение
+
+Запрос на получение всех объектов базы данных
+
+>>> from task1.models import Buyer
+>>> people = Buyer.objects.all()
+>>> for person in people: print(f"{person.id}.{person.name} - {person.age}")
+...
+1.ackslasldfjslakjfl - 18
+10.Tom - 23
+11.Kate - 24
+12.Ann - 21
+13.Tom - 24
+14.Alex - 21
+15.Tom - 24
+16.Alex - 21
+>>>
+
+Запрос конкретного по id
+
+>>> from task1.models import Buyer
+>>> bob = Buyer.objects.get(id=1)
+>>> print(bob)
+['ackslasldfjslakjfl', 100, 18]
+>>>
+
+
+
+Запрос на фильтрацию
+
+>>> from task1.models import Buyer
+>>> people = Buyer.objects.filter(age=24)
+>>> for person in people: print(f"{person.id}. {person.name}. {person.balance}. {person.age}")
+...
+11. Kate. 100. 24
+13. Tom. 100. 24
+15. Tom. 100. 24
+>>>
+
+Удаление объектов по id
+
+from task1.models import News
+d = News.objects.get(id=3)
+
+
+Добавление объектов
+
+save
+
+>>> from task1.models import Buyer
+>>> tom = Buyer(name="Tom", balance=100, age=23)
+>>> tom.save()
+
+bulk_create()
+
+>>> from task1.models import Buyer
+>>> people = Buyer.objects.bulk_create([Buyer(name="Tom",balance=100, age=24), Buyer(name="Alex", balance=100, age=21),])
+>>> for person in people: print(f"{person.id}. {person.name}. {person.balance}. {person.age}")
+...
+15. Tom. 100. 24
+16. Alex. 100. 21
+>>>
+
+Запрос на подсчет количества объектов(len()), можно комбинировать с
+фильтрацией.
+
+>>> from task1.models import Buyer
+>>> people = Buyer.objects.all()
+>>> number = len(people)
+>>> print(number)
+8

@@ -1,0 +1,36 @@
+{% extends "menu.html" %}
+{% load static %}
+
+{% block content %}
+<ul>
+    {% for key in page_posts %}
+    <li><p>{{key.title}} | {{key.content}} | {{key.current_datetime}}</p></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block navigation %}
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        {% if page_posts.has_previous %}
+            <li class="page-item disabled"><a class="page-link" href="?page={{ page_posts.previous_page_number }}">Назад</a></li>
+        {% else %}
+            <li class="page-item disabled"><span class="page-link">Назад</span>
+        {% endif %}
+
+        {% for num in page_posts.paginator.page_range %}
+            {% if page_posts.number == num %}
+                <li class="page-item active"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+            {% elif num > page_posts.number|add:'-6' and num < page_posts.number|add:'6' %}
+                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_posts.has_next %}
+        <li class="page-item disabled"><a class="page-link" href="?page={{ page_posts.next_page_number }}">Вперед</a></li>
+        {% else %}
+            <li class="page-item disabled"><span class="page-link">Вперед</span>
+        {% endif %}
+    </ul>
+</nav>
+{% endblock %}
